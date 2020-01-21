@@ -781,7 +781,7 @@ bool ServerManager::searchParamCallback(XmlRpc::XmlRpcValue& params, ClientInfo&
 
     string ns = name;
     bool hasParam = false;
-    unsigned found = ns.length();
+    size_t found = ns.length();
     do
     {
       ns = ns.substr(0, found);

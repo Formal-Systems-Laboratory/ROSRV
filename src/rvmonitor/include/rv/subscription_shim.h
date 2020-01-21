@@ -10,7 +10,7 @@ namespace rv { class SubscriptionShim; }
  * this node is not subscribed to. A second topic (handlerTopic) is used
  * to handle these connections.
  */
-struct rv::SubscriptionShim
+class rv::SubscriptionShim
 {
 public:
   SubscriptionShim(std::string const& connectTopic, std::string const& handlerTopic);
