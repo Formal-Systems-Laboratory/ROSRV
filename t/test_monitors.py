@@ -112,17 +112,18 @@ def session_init(get_options, launch_master):
 @pytest.fixture()
 def simple_pipeline(request, session_init, get_options):
     def run_simple_pipeline(test_packets):
-        registered_topics = []
+        registered_topics = {}
         if('unmonitored_channel' in request.node.name):
             prefix = ''
         else:
             prefix = get_options['topic_prefix']
         rate = ros.Rate(10);
+        rate.sleep(); rate.sleep(); rate.sleep(); rate.sleep()
         for packet in test_packets:
             # register callbacks. Don't re-register new callbacks for existing topics
             if not packet.topic_name in registered_topics:
-                ros.Subscriber(packet.topic_name, packet.msg_class, packet.callback.as_callable)
-                registered_topics.append(packet.topic_name)
+                registered_topics[packet.topic_name] = \
+                    ros.Subscriber(packet.topic_name, packet.msg_class, packet.callback.as_callable)
                 rate.sleep()
             for unstamped_msg in packet.to_send:
                 stamped_msg = packet.stamp_msg(unstamped_msg)
@@ -131,6 +132,8 @@ def simple_pipeline(request, session_init, get_options):
                            , packet.msg_type
                            , str(stamped_msg)])
             rate.sleep(); rate.sleep(); rate.sleep(); rate.sleep()
+        for subscription in registered_topics.itervalues():
+            subscription.unregister()
     return run_simple_pipeline
 
 @pytest.fixture()
