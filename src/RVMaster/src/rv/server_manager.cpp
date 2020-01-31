@@ -1,3 +1,4 @@
+#include "ros/init.h"
 #include "ros/console.h"
 #include "ros/network.h"
 #include "rv/XmlRpc.h"
@@ -108,12 +109,16 @@ void ServerManager::requestTopicCallback(XmlRpc::XmlRpcValue& params, ClientInfo
   ROS_INFO("REQUESTING TOPIC CALLBACK");
 
   requestTopic(params[1], params[2], result);
+  ROS_FATAL("Client method requestTopic unexpectedly called on rvmaster");
+  ros::requestShutdown();
+  return;
 }
 
 // these functions should be implemented in the client??
 bool ServerManager::requestTopic(const string& topic, XmlRpc::XmlRpcValue& protos, XmlRpc::XmlRpcValue& ret)
 {
   ROS_INFO("Requesting topic: %s", topic.c_str());
+  return false;
 }
 void ServerManager::pubUpdateCallback(XmlRpc::XmlRpcValue& params, ClientInfo& ci, XmlRpc::XmlRpcValue& result)
 {
@@ -525,6 +530,9 @@ bool ServerManager::unregisterSubscriberCallback(XmlRpc::XmlRpcValue& params, Cl
 
   if (acctrl::isSubscriberAllowed(topic, node_name, ci.ip))
   {
+    XmlRpc::XmlRpcValue payload;
+    master::execute("unregisterSubscriber", params, result, payload, true);
+    return true;
   }
   else
   {
@@ -586,6 +594,8 @@ bool getPublishersForTopic(string const& caller_id, string const& topic, XmlRpcV
     }
     return true;
   }
+  ret.setSize(0);
+  return true;
 }
 
 bool ServerManager::registerPublisherCallback(XmlRpc::XmlRpcValue& params, ClientInfo& ci, XmlRpc::XmlRpcValue& result)
@@ -942,6 +952,7 @@ bool ServerManager::testxmlCallback(XmlRpc::XmlRpcValue& params, ClientInfo& ci,
 {
   ROS_INFO("TEST XML CALLBACK");
   result = 100;
+  return true;
 }
 
 }  // namespace rv
