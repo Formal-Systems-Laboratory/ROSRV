@@ -3,6 +3,7 @@
 /build/
 /devel/
 /logs/
+/src/CMakeLists.txt
 
 # Other build products
 /docs/overview.pdf
