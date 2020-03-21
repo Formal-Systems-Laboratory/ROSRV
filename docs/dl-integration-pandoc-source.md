@@ -260,3 +260,15 @@ code that uses maps to track initialization and updates to logical variables acr
 observed events. Thus `check_violation` only calls ModelPlex generated code when
 all fields in successive instances of the state struct have been properly populated.
 
+Codebase Outline
+----------------
+
+### Repositories
+
+    * [ROSRV](https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact)
+    * [RV-Monitor](https://github.com/runtimeverification/rv-monitor/tree/aa-exact)
+
+### Building
+
+    * Build instructions for [ROSRV](https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact#installation)
+    * Build instructions for [RV-Monitor](https://github.com/runtimeverification/rv-monitor/tree/aa-exact#build-and-installation)
