@@ -265,10 +265,15 @@ Codebase Outline
 
 ### Repositories
 
-    * [ROSRV](https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact)
-    * [RV-Monitor](https://github.com/runtimeverification/rv-monitor/tree/aa-exact)
+ * [ROSRV](https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact)
+     - https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact
+
+ * [RV-Monitor](https://github.com/runtimeverification/rv-monitor/tree/aa-exact)
+     - https://github.com/runtimeverification/rv-monitor/tree/aa-exact
 
 ### Building
 
-    * Build instructions for [ROSRV](https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact#installation)
-    * Build instructions for [RV-Monitor](https://github.com/runtimeverification/rv-monitor/tree/aa-exact#build-and-installation)
+ * Build instructions for [ROSRV](https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact#installation)
+    - https://github.com/Formal-Systems-Laboratory/ROSRV/tree/aa-exact#installation
+ * Build instructions for [RV-Monitor](https://github.com/runtimeverification/rv-monitor/tree/aa-exact#build-and-installation)
+    - https://github.com/runtimeverification/rv-monitor/tree/aa-exact#build-and-installation
